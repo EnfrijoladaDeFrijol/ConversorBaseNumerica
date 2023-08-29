@@ -9,8 +9,11 @@ def hacerConversion(*args):
         numeroEntrada = entrada_numerConvertir.get()
         numeroEnDecimal = int(numeroEntrada, baseVar.get())
 
+        # Acá vamos actualizando los datos (las etiquetas)
         etiqueta_decimal.config(text=f"Decimal: {numeroEnDecimal}")
         etiqueta_octal.config(text=f"Octal: {oct(numeroEnDecimal)[2:]}")
+        etiqueta_hexa.config(text=f"Hexadecimal: {hex(numeroEnDecimal)[2:].upper()}")
+
     except ValueError:
         limpiarEtiquetas()
 
@@ -20,7 +23,7 @@ def limpiarEtiquetas(): #Limpiamos en caso de error
 
 raiz = tk.Tk()
 raiz.title("Conversión de sistemas númericos")
-raiz.config(bg="#FFFFFF")
+#raiz.config(bg="#FFFFFF ")
 raiz.geometry("400x300")
 
 # Solo es el titulo
@@ -44,6 +47,9 @@ radio_baseDecimal.pack()
 # Base octal
 radio_octal = tk.Radiobutton(raiz, text="Octal", variable=baseVar, value=8, command=hacerConversion)
 radio_octal.pack()
+# Base hexadecimal
+radio_hexa = tk.Radiobutton(raiz, text="Hexadecimal", variable=baseVar, value=16, command=hacerConversion)
+radio_hexa.pack()
 
 
 
@@ -56,5 +62,8 @@ etiqueta_decimal.pack()
 
 etiqueta_octal = tk.Label(raiz, text="Octal:")
 etiqueta_octal.pack()
+
+etiqueta_hexa = tk.Label(raiz, text="Hexadecimal:")
+etiqueta_hexa.pack()
 
 raiz.mainloop()
